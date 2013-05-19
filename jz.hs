@@ -27,3 +27,9 @@ isPalindrome xs =
         sameList [] [] = True
         sameList (x:xs) (y:ys) = x == y && sameList xs ys
     in sameList xs $ myReverse xs
+
+data NestedList a = Elem a | List [NestedList a]
+flatten :: NestedList a -> [a]
+flatten (Elem x) = [x]
+flatten (List (x:xs)) = flatten x ++ (flatten $ List xs)
+flatten (List []) = []
