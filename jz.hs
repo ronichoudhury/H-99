@@ -52,3 +52,12 @@ pack xs =
 
 encode :: (Eq a) => [a] -> [(Int, a)]
 encode xs = map (\x -> (myLength x, head x)) $ pack xs
+
+data RLE a = Multiple Int a | Single a deriving (Show)
+encodeModified :: (Eq a) => [a] -> [RLE a]
+encodeModified = map rle . encode
+    where rle :: (Eq a) => (Int, a) -> RLE a
+          rle (n, x)
+              | n == 1 = Single x
+              | n > 1 = Multiple n x
+              | otherwise = error "Impossible RLE spec"
