@@ -22,11 +22,7 @@ myReverse [] = []
 myReverse (x:xs) = myReverse xs ++ [x]
 
 isPalindrome :: (Eq a) => [a] -> Bool
-isPalindrome xs = 
-    let sameList :: (Eq a) => [a] -> [a] -> Bool
-        sameList [] [] = True
-        sameList (x:xs) (y:ys) = x == y && sameList xs ys
-    in sameList xs $ myReverse xs
+isPalindrome xs = xs == myReverse xs
 
 data NestedList a = Elem a | List [NestedList a]
 flatten :: NestedList a -> [a]
