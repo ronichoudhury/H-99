@@ -33,3 +33,9 @@ flatten :: NestedList a -> [a]
 flatten (Elem x) = [x]
 flatten (List (x:xs)) = flatten x ++ (flatten $ List xs)
 flatten (List []) = []
+
+compress :: (Eq a) => [a] -> [a]
+compress (x:y:xs)
+    | x == y = compress $ y:xs
+    | otherwise = x:(compress $ y:xs)
+compress xs = xs
