@@ -39,3 +39,17 @@ compress (x:y:xs)
     | x == y = compress $ y:xs
     | otherwise = x:(compress $ y:xs)
 compress xs = xs
+
+split :: (Eq a) => [a] -> ([a], [a])
+split [] = ([], [])
+split (x:[]) = ([x], [])
+split (x:y:xs)
+    | x == y = (x:p, r)
+    | otherwise = ([x], y:xs)
+    where (p, r) = split $ y:xs
+
+pack :: (Eq a) => [a] -> [[a]]
+pack [] = [[]]
+pack (x:[]) = [[x]]
+pack xs = [p] ++ pack r
+    where (p, r) = split xs
