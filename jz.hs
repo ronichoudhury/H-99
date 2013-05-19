@@ -53,3 +53,6 @@ pack xs =
             where (p, r) = split $ y:xs
         (p, r) = split xs
     in [p] ++ pack r
+
+encode :: (Eq a) => [a] -> [(Int, a)]
+encode xs = map (\x -> (myLength x, head x)) $ pack xs
