@@ -20,3 +20,10 @@ myLength (_:xs) = 1 + myLength xs
 myReverse :: [a] -> [a]
 myReverse [] = []
 myReverse (x:xs) = myReverse xs ++ [x]
+
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome xs = 
+    let sameList :: (Eq a) => [a] -> [a] -> Bool
+        sameList [] [] = True
+        sameList (x:xs) (y:ys) = x == y && sameList xs ys
+    in sameList xs $ myReverse xs
