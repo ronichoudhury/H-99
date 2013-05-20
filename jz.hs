@@ -122,3 +122,8 @@ split xs n = splitTake [] xs 0 n
           splitTake s (x:xs) i n
               | i == n = (s, x:xs)
               | otherwise = splitTake (s ++ [x]) xs (i+1) n
+
+-- Problem 18
+slice :: [a] -> Int -> Int -> [a]
+slice xs u v = take (v-u+1) r
+    where (_, r) = split xs (u-1)
