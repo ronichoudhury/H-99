@@ -104,3 +104,12 @@ dupli (x:xs) = [x,x] ++ dupli xs
 repli :: [a] -> Int -> [a]
 repli [] _ = []
 repli xs n = concatMap (take n . repeat) xs
+
+-- Problem 16
+dropEvery :: [a] -> Int -> [a]
+dropEvery xs k = dropOn xs 1 k
+    where dropOn :: [a] -> Int -> Int -> [a]
+          dropOn [] _ _ = []
+          dropOn (x:xs) i k
+              | i `mod` k == 0 = dropOn xs (i+1) k
+              | otherwise = x:(dropOn xs (i+1) k)
