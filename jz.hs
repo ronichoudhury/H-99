@@ -132,3 +132,8 @@ slice xs u v = take (v-u+1) r
 rotate :: [a] -> Int -> [a]
 rotate xs i = r ++ a
     where (a, r) = split xs (i `mod` length xs)
+
+-- Problem 20
+removeAt :: Int -> [a] -> (a, [a])
+removeAt i xs = (r, a ++ b)
+    where (a, r:b) = split xs (i-1)
