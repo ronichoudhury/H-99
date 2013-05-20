@@ -79,3 +79,8 @@ decodeModified = concatMap decodeRLE
     where decodeRLE :: RLE a -> [a]
           decodeRLE (Single a) = [a]
           decodeRLE (Multiple n a) = take n (repeat a)
+
+-- Problem 14
+dupli :: [a] -> [a]
+dupli [] = []
+dupli (x:xs) = [x,x] ++ dupli xs
