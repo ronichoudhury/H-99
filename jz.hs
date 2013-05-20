@@ -113,3 +113,12 @@ dropEvery xs k = dropOn xs 1 k
           dropOn (x:xs) i k
               | i `mod` k == 0 = dropOn xs (i+1) k
               | otherwise = x:(dropOn xs (i+1) k)
+
+-- Problem 17
+split :: [a] -> Int -> ([a], [a])
+split xs n = splitTake [] xs 0 n
+    where splitTake :: [a] -> [a] -> Int -> Int -> ([a], [a])
+          splitTake s [] _ _ = (s, [])
+          splitTake s (x:xs) i n
+              | i == n = (s, x:xs)
+              | otherwise = splitTake (s ++ [x]) xs (i+1) n
