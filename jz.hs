@@ -72,3 +72,10 @@ encodeModified = map rle . encode
               | n == 1 = Single x
               | n > 1 = Multiple n x
               | otherwise = error "Impossible RLE spec"
+
+-- Problem 12
+decodeModified :: [RLE a] -> [a]
+decodeModified = concatMap decodeRLE 
+    where decodeRLE :: RLE a -> [a]
+          decodeRLE (Single a) = [a]
+          decodeRLE (Multiple n a) = take n (repeat a)
