@@ -127,3 +127,8 @@ split xs n = splitTake [] xs 0 n
 slice :: [a] -> Int -> Int -> [a]
 slice xs u v = take (v-u+1) r
     where (_, r) = split xs (u-1)
+
+-- Problem 19
+rotate :: [a] -> Int -> [a]
+rotate xs i = r ++ a
+    where (a, r) = split xs (i `mod` length xs)
