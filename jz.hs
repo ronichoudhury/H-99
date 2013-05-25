@@ -137,3 +137,8 @@ rotate xs i = r ++ a
 removeAt :: Int -> [a] -> (a, [a])
 removeAt i xs = (r, a ++ b)
     where (a, r:b) = split xs (i-1)
+
+-- Problem 21
+insertAt :: a -> [a] -> Int -> [a]
+insertAt x xs i = ys ++ x:zs
+    where (ys, zs) = split xs (i-1)
