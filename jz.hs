@@ -142,3 +142,10 @@ removeAt i xs = (r, a ++ b)
 insertAt :: a -> [a] -> Int -> [a]
 insertAt x xs i = ys ++ x:zs
     where (ys, zs) = split xs (i-1)
+
+-- Problem 22
+range :: Int -> Int -> [Int]
+range a b
+    | a > b = []
+    | a == b = [a]
+    | otherwise = a:(range (a+1) b)
