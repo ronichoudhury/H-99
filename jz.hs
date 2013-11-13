@@ -1,3 +1,5 @@
+import System.Random hiding (split)
+
 -- Problem 1
 myLast :: [a] -> a
 myLast [x] = x
@@ -149,3 +151,13 @@ range a b
     | a > b = []
     | a == b = [a]
     | otherwise = a:(range (a+1) b)
+
+-- Problem 23
+rnd_select :: [a] -> Int -> IO [a]
+rnd_select _    0 = return []
+rnd_select list n = do (x, xs) <- go
+                       rest <- rnd_select xs (n - 1)
+                       return (x : rest)
+  where
+    go = do index <- randomRIO (1, length list)
+            return $ removeAt index list
