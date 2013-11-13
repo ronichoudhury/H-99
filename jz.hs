@@ -161,3 +161,7 @@ rnd_select list n = do (x, xs) <- go
   where
     go = do index <- randomRIO (1, length list)
             return $ removeAt index list
+
+-- Problem 24
+diff_select :: Int -> Int -> IO [Int]
+diff_select n limit = rnd_select (range 1 limit) n
