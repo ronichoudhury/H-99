@@ -169,3 +169,11 @@ diff_select n limit = rnd_select (range 1 limit) n
 -- Problem 25
 rnd_permu :: [a] -> IO [a]
 rnd_permu xs = rnd_select xs $ length xs
+
+-- Problem 26
+combinations :: Int -> [a] -> [[a]]
+combinations 0 _   = [[]]
+combinations 1 xs  = map return xs
+combinations n l@(x:xs)
+    | n > length l = []
+    | otherwise    = (map (x:) $ combinations (n-1) xs) ++ (combinations n xs)
